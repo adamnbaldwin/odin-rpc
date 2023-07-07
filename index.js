@@ -3,11 +3,20 @@ function getComputerChoice(){
     return choices[Math.floor(Math.random() * choices.length)];
 }
 function getplayerChoice(){
-    return choices[Math.floor(Math.random() * choices.length)];
-}
+    let validatedInput = false;
+    while (validatedInput == false){
+    const choice = prompt("Rock, Paper, Scissors?");
+    if (choice == null){
+        continue;
+    }   
+    const choiceInLower = choice.toLowerCase(); 
+    if(choices.includes(choiceInLower)){
+        validatedInput = true;
+        return choiceInLower;
+    }
 
-const playerSelection = getplayerChoice();
-const computerSelection = getComputerChoice();
+    }
+}
 
 function checkWinner (playerSelection, computerSelection) {
     if(playerSelection == computerSelection){
@@ -39,5 +48,28 @@ function playRound(playerSelection, computerSelection){
     }
     }
 
-    console.log(playRound(playerSelection, computerSelection))
+function game(){
+   let scorePlayer = 1;
+   let scoreComputer = 1;
+    console.log("Welcome friend")
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = getplayerChoice();
+        const computerSelection = getComputerChoice();  
+        console.log(playRound(playerSelection, computerSelection));
+        if(checkWinner(playerSelection,computerSelection) == "Player") {
+            scorePlayer++;
+        } else if (checkWinner(playerSelection,computerSelection) == "Computer") {
+            scoreComputer++;
+        }
+    }
+    console.log("Game Over Friend!");
+    if(scorePlayer > scoreComputer) {
+        console.log(`Player wins ${scorePlayer} to ${scoreComputer}`)
+    } else if(scoreComputer > scorePlayer) {
+        console.log(`Computer wins ${scoreComputer} to ${scorePlayer}`)
+    } else {
+        console.log("It is a tie, yo")
+    }
+}
 
+game()

@@ -49,8 +49,8 @@ function playRound(playerSelection, computerSelection){
     }
 
 function game(){
-   let scorePlayer = 1;
-   let scoreComputer = 1;
+   let scorePlayer = 0;
+   let scoreComputer = 0;
     console.log("Welcome friend")
     for (let i = 0; i < 5; i++) {
         const playerSelection = getplayerChoice();
@@ -60,13 +60,15 @@ function game(){
             scorePlayer++;
         } else if (checkWinner(playerSelection,computerSelection) == "Computer") {
             scoreComputer++;
+        } else if (checkWinner(playerSelection, computerSelection) == "Tie" ) {
+            scorePlayer++ && scoreComputer++;
         }
     }
     console.log("Game Over Friend!");
     if(scorePlayer > scoreComputer) {
-        console.log(`Player wins ${scorePlayer} to ${scoreComputer}`)
+        console.log(`Player wins best of 5!`)
     } else if(scoreComputer > scorePlayer) {
-        console.log(`Computer wins ${scoreComputer} to ${scorePlayer}`)
+        console.log(`Computer wins best of 5!`)
     } else {
         console.log("It is a tie, yo")
     }
